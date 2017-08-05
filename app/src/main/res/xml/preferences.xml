@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference
+        android:key="abm_token"
+        android:defaultValue=""
+        android:title="トークン"
+        android:summary="AbemaTVのAPIにアクセスするためのトークン"
+        android:dialogTitle="AbemaTV token" />
+    <PreferenceScreen
+        android:title="タップしてトークンを取得"
+        android:summary="AbemaTVのページにアクセスして自動でトークンを取得します">
+        <intent android:action="android.intent.action.MAIN"
+            android:targetPackage="net.nakayuki.abematvcommentviewer"
+            android:targetClass="net.nakayuki.abematvcommentviewer.GetTokenActivity" />
+    </PreferenceScreen>
+    <PreferenceCategory android:title="コメント一覧設定">
+        <EditTextPreference
+            android:key="maxListComment"
+            android:defaultValue="100"
+            android:inputType="number"
+            android:title="コメント一覧最大数(100以上)"
+            android:summary=""
+            android:dialogTitle="コメント一覧最大数(100以上)" />
+        <SwitchPreference
+            android:key="isClearChChange"
+            android:summary="次の番組に移った時にコメント一覧をクリアします"
+            android:defaultValue="true"
+            android:title="コメントクリア"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="コメント流し設定">
+        <EditTextPreference
+            android:key="maxMovingComment"
+            android:defaultValue="30"
+            android:inputType="number"
+            android:title="流れるコメント最大数"
+            android:summary=""
+            android:dialogTitle="流れるコメント最大数" />
+        <EditTextPreference
+            android:key="movingCommentFps"
+            android:defaultValue="30"
+            android:inputType="number"
+            android:title="コメント流しの描画FPS"
+            android:summary=""
+            android:dialogTitle="コメント流しの描画FPS" />
+        <EditTextPreference
+            android:key="movingCommentSeconds"
+            android:defaultValue="6"
+            android:inputType="number"
+            android:title="コメントが横切る秒数"
+            android:summary=""
+            android:dialogTitle="コメントが画面を横切るのにかかる秒数" />
+        <EditTextPreference
+            android:key="movingCommentSize"
+            android:defaultValue="20"
+            android:inputType="number"
+            android:title="コメントサイズ(dp)"
+            android:summary=""
+            android:dialogTitle="コメントの大きさ(dp)" />
+    </PreferenceCategory>
+</PreferenceScreen>

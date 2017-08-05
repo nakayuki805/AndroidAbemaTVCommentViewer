@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/movingCommentBtn"
+        android:icon="@drawable/moving_comment_icon"
+        android:title="コメ流し"
+        app:showAsAction="always"></item>
+    <item
+        android:id="@+id/toAbemaBtn"
+        android:icon="@drawable/toabema"
+        android:title="AbemaTVアプリを開く"
+        app:showAsAction="always"></item>
+</menu>
