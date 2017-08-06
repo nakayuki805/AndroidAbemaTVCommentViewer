@@ -16,6 +16,7 @@ import android.os.Handler
 import android.os.IBinder
 import android.preference.PreferenceManager
 import android.support.design.widget.FloatingActionButton
+import android.support.v4.widget.SwipeRefreshLayout
 import android.text.InputFilter
 import android.text.InputType
 import android.util.Log
@@ -147,6 +148,11 @@ class CommentListActivity : AppCompatActivity() {
             })
             builder.show()
             return@setOnItemLongClickListener true
+        }
+        //引っ張って更新
+        val commentRefresh = findViewById(R.id.commentRefresh) as SwipeRefreshLayout
+        commentRefresh.setOnRefreshListener {
+            getCommentAll()
         }
     }
 
@@ -304,19 +310,8 @@ class CommentListActivity : AppCompatActivity() {
             }
             commentService?.setChannel(intent.getStringExtra("chid"), intent.getStringExtra("chname"))
             //コメント再取得
-            var lastid = ""
-            if (commentAdapter!=null && commentAdapter!!.count>0){
-                val lastItem = commentAdapter?.getItem(0)
-                if(lastItem!=null){
-                    lastid = lastItem.id
-                }
-            }
-            commentService?.getCommentAll(lastid, {comments, commentNum, continueFlag ->
-                if(!continueFlag){
-                    commentAdapter?.clear()
-                }
-                commentService?.onComment?.invoke(comments, commentNum)
-            })
+            getCommentAll()
+
             invalidateOptionsMenu()
 
         }
@@ -328,6 +323,26 @@ class CommentListActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT).show()
             //Log.d("debug", "disconnected servie")
         }
+
+    }
+
+    fun getCommentAll(){
+        var lastid = ""
+        val commentRefresh = findViewById(R.id.commentRefresh) as SwipeRefreshLayout
+        if (commentAdapter!=null && commentAdapter!!.count>0){
+            val lastItem = commentAdapter?.getItem(0)
+            if(lastItem!=null){
+                lastid = lastItem.id
+            }
+        }
+        commentRefresh.isRefreshing = true
+        commentService?.getCommentAll(lastid, {comments, commentNum, continueFlag ->
+            if(!continueFlag){
+                commentAdapter?.clear()
+            }
+            commentService?.onComment?.invoke(comments, commentNum)
+            commentRefresh.isRefreshing = false
+        })
     }
 
     @TargetApi(Build.VERSION_CODES.M)
