@@ -10,6 +10,7 @@ import android.annotation.TargetApi
 import android.provider.Settings
 import android.app.ActivityManager
 import android.app.AlertDialog
+import android.app.UiModeManager
 import android.content.*
 import android.os.Handler
 import android.os.IBinder
@@ -41,7 +42,7 @@ class CommentListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         serviceIntent = Intent(this@CommentListActivity,CommentService::class.java)
-        setContentView(R.layout.activity_comment_list)
+        val uiManager = getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
 
         //back button
         //val actionBar = actionBar
@@ -55,7 +56,14 @@ class CommentListActivity : AppCompatActivity() {
             movingCommentFps = Math.max(pref!!.getString("movingCommentFps", "30").toInt(), 1)
             movingCommentSeconds = Math.max(pref!!.getString("movingCommentSeconds", "6").toInt(), 1)
             movingCommentSize = Math.max(pref!!.getString("movingCommentSize", "20").toInt(), 1)
+            val colorTheme = pref!!.getString("colorTheme", "day")
+            if (colorTheme == "day") {
+                uiManager.nightMode = UiModeManager.MODE_NIGHT_NO
+            }else{
+                uiManager.nightMode = UiModeManager.MODE_NIGHT_YES
+            }
         }
+        setContentView(R.layout.activity_comment_list)
 
         val chid = intent.getStringExtra("chid")
         val chname = intent.getStringExtra("chname")

@@ -14,7 +14,7 @@
         android:paddingLeft="8dp"
         android:paddingStart="8dp"
         android:text="-"
-        android:textColor="@android:color/black"
+        android:textColor="@color/appTextColor"
         android:textSize="14sp" />
     <View
         android:layout_width="1dp"

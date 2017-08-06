@@ -12,6 +12,16 @@
 
     <string-array name="chListNames"></string-array>
 
+    <!-- setting -->
+    <string-array name="setting_theme">
+        <item>昼</item>
+        <item>夜</item>
+    </string-array>
+    <string-array name="setting_theme_value">
+        <item>day</item>
+        <item>night</item>
+    </string-array>
+
     <!-- Strings related to Settings -->
 
     <!-- Example General settings -->

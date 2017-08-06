@@ -15,8 +15,6 @@ import android.net.Uri
 import android.support.v4.widget.SwipeRefreshLayout
 import android.util.Log
 import android.widget.*
-import java.text.SimpleDateFormat
-import java.util.*
 import org.json.JSONArray
 import java.io.IOException
 

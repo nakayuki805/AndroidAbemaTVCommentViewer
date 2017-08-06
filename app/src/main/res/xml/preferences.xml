@@ -13,6 +13,14 @@
             android:targetPackage="net.nakayuki.abematvcommentviewer"
             android:targetClass="net.nakayuki.abematvcommentviewer.GetTokenActivity" />
     </PreferenceScreen>
+    <ListPreference
+        android:defaultValue="day"
+        android:dialogTitle="テーマ"
+        android:entries="@array/setting_theme"
+        android:entryValues="@array/setting_theme_value"
+        android:key="colorTheme"
+        android:summary="%s"
+        android:title="テーマ" />
     <PreferenceCategory android:title="コメント一覧設定">
         <EditTextPreference
             android:key="maxListComment"
