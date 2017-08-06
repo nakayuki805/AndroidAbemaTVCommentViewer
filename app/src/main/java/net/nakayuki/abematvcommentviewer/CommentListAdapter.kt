@@ -17,6 +17,7 @@ class CommentListAdapter(context: Context, resource: Int) : ArrayAdapter<Comment
     private val mInflater: LayoutInflater
     private var mItems = ArrayList<CommentListItem>()
     private val mResource = resource
+    var density = 1f
     var delta = 0
 
     init {
@@ -93,7 +94,8 @@ class CommentListAdapter(context: Context, resource: Int) : ArrayAdapter<Comment
         commentText.text = item.commentText
         val commentTimeText = view.findViewById(R.id.commentTimeText) as TextView
         commentTimeText.text = item.timeText
-        //Log.d("debug", "set each item ct:"+item.commentText+" tt:"+item.timeText+" pos:"+position)
+        commentText.width = (parent.width - 60*density).toInt()
+        //Log.d("debug", "set each item ct:"+item.commentText+" tt:"+item.timeText+" pos:"+position+" pW:"+parent.width)
         return view
     }
 }

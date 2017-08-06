@@ -7,26 +7,29 @@
 
     <TextView
         android:id="@+id/commentText"
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:padding="4dp"
         android:paddingLeft="8dp"
         android:paddingStart="8dp"
-        android:text="TextView"
+        android:text="-"
         android:textColor="@android:color/black"
         android:textSize="14sp" />
-
+    <View
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"></View>
     <TextView
         android:id="@+id/commentTimeText"
-        android:layout_width="0dp"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="0"
         android:gravity="right|end"
         android:padding="5dp"
-        android:paddingEnd="16dp"
-        android:paddingRight="16dp"
-        android:text="-:-:-"
+        android:paddingEnd="8dp"
+        android:paddingRight="8dp"
+        android:text="--:--:--"
         android:textColor="@android:color/darker_gray"
-        android:textSize="10sp" />
+        android:textSize="10dp" />
 </LinearLayout>

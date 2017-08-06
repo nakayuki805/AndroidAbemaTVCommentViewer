@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import android.annotation.TargetApi
 import android.provider.Settings
 import android.app.ActivityManager
@@ -18,10 +17,9 @@ import android.preference.PreferenceManager
 import android.support.design.widget.FloatingActionButton
 import android.text.InputFilter
 import android.text.InputType
+import android.util.Log
 import android.view.inputmethod.EditorInfo
-import android.widget.EditText
-import android.widget.ListView
-import android.widget.TextView
+import android.widget.*
 
 
 class CommentListActivity : AppCompatActivity() {
@@ -62,6 +60,7 @@ class CommentListActivity : AppCompatActivity() {
         val chid = intent.getStringExtra("chid")
         val chname = intent.getStringExtra("chname")
         setTitle(chname)
+
         //Toast.makeText(context,"chid:"+chid,Toast.LENGTH_SHORT).show()
         val sendCommentBtn = findViewById(R.id.sendCommentBtn) as FloatingActionButton
         sendCommentBtn.setOnClickListener { view ->
@@ -113,6 +112,7 @@ class CommentListActivity : AppCompatActivity() {
         //list view
         val commentListView = findViewById(R.id.commentList) as ListView
         commentAdapter = CommentListAdapter(this@CommentListActivity, R.layout.comment_list_item)
+        commentAdapter?.density = resources.displayMetrics.density
         commentListView.adapter = commentAdapter
         //long tap
         commentListView.setOnItemLongClickListener { adapterView, view, pos, itemid ->
@@ -140,6 +140,15 @@ class CommentListActivity : AppCompatActivity() {
             builder.show()
             return@setOnItemLongClickListener true
         }
+    }
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        val titleLayout = findViewById(R.id.titleLayout) as LinearLayout
+        val slotTitleText = findViewById(R.id.slotTitleText) as TextView
+        val commentNumText = findViewById(R.id.commentNumText) as TextView
+        slotTitleText.width = titleLayout.width - commentNumText.width - (32*resources.displayMetrics.density).toInt()
+        //Log.d("debug", "onWFC tlW:"+titleLayout.width+" cntW:"+commentNumText.width)
     }
     override fun onResume() {
         super.onResume()

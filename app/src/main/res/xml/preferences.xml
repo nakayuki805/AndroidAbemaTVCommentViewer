@@ -41,7 +41,7 @@
             android:inputType="number"
             android:title="コメント流しの描画FPS"
             android:summary=""
-            android:dialogTitle="コメント流しの描画FPS" />
+            android:dialogTitle="流れるコメント描画FPS" />
         <EditTextPreference
             android:key="movingCommentSeconds"
             android:defaultValue="6"
