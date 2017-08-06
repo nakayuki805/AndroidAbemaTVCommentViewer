@@ -29,6 +29,7 @@ class SettingsActivity : AppCompatActivity() {
             movingCommentSecondsPref.summary = movingCommentSecondsPref.text
             val movingCommentSizePref = preferenceScreen.findPreference("movingCommentSize") as EditTextPreference
             movingCommentSizePref.summary = movingCommentSizePref.text
+
         }
 
         val listener = SharedPreferences.OnSharedPreferenceChangeListener{ sharedPreferences, key ->

@@ -20,7 +20,7 @@
         android:entryValues="@array/setting_theme_value"
         android:key="colorTheme"
         android:summary="%s"
-        android:title="テーマ" />
+        android:title="テーマ(効かない端末もあります)" />
     <PreferenceCategory android:title="コメント一覧設定">
         <EditTextPreference
             android:key="maxListComment"

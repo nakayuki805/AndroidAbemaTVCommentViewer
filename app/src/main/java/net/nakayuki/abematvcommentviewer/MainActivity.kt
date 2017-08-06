@@ -8,6 +8,8 @@ import android.view.Menu
 import android.view.MenuItem
 import org.json.JSONObject
 import android.app.AlertDialog
+import android.app.UiModeManager
+import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.content.DialogInterface
@@ -115,6 +117,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
         resumeFlag = true
+
+        val uiManager = getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
+        if (PreferenceManager.getDefaultSharedPreferences(this).getString("colorTheme", "day") == "day") {
+            uiManager.nightMode = UiModeManager.MODE_NIGHT_NO
+        }else{
+            uiManager.nightMode = UiModeManager.MODE_NIGHT_YES
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
